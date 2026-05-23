@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 奇幻字母樂園 Fantasy Keyboard Park - 兒童趣味英打盲打學習遊戲</title>
+    <meta name="description" content="專為小學生與幼兒設計的趣味英打網頁遊戲。透過敲土撥鼠、氣球爆爆樂、恐龍大胃王等零壓力、零挫折感的遊戲設計，輕鬆建立標準盲打指法與小學單字肌肉記憶！">
+    <!-- Google Fonts: Fredoka Rounded & Noto Sans TC for maximum child friendliness -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Sans+TC:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Playful Sky & Animated Clouds Background -->
+    <div id="sky-bg">
+        <div class="cloud cloud-1">☁️</div>
+        <div class="cloud cloud-2">☁️</div>
+        <div class="cloud cloud-3">☁️</div>
+        <div class="cloud cloud-4">☁️</div>
+    </div>
+
+    <div class="app-container">
+        <!-- HEADER SECTION (CANDY BOARD STYLE) -->
+        <header class="game-header">
+            <div class="header-logo">
+                <h1 id="main-title" class="bouncy-title">🌈 奇幻字母樂園 <span class="sub-logo">Keyboard Park</span></h1>
+            </div>
+            <div class="header-controls">
+                <button id="btn-sound-toggle" class="bubbly-btn green" title="切換音效">🔊 音效: 開</button>
+                <button id="btn-voice-toggle" class="bubbly-btn purple" title="切換發音">🗣️ 語音: 開</button>
+                <button id="btn-leaderboard" class="bubbly-btn gold" title="榮譽榜">🏆 榮譽榜</button>
+            </div>
+        </header>
+
+        <!-- MAIN MENU VIEW -->
+        <main id="view-menu" class="game-view active">
+            <section class="menu-card jelly-panel">
+                <h2 class="section-title">🎈 選擇一個好玩的樂園設施 🎈</h2>
+                
+                <div class="mode-grid">
+                    <!-- Whack a Mole -->
+                    <div class="mode-card" id="mode-mole" data-mode="mole">
+                        <div class="mode-icon-wrapper">
+                            <span class="mode-icon">🔨</span>
+                            <span class="mode-mascot">🐹</span>
+                        </div>
+                        <h3>鍵盤敲土撥鼠</h3>
+                        <p>土撥鼠探出頭了！跟著亮起的鍵盤指引，敲擊字母把地鼠打回洞裡，收集閃亮星星！🌟</p>
+                        <div class="mode-badge red">極度好玩</div>
+                    </div>
+                    
+                    <!-- Balloon Popper -->
+                    <div class="mode-card" id="mode-balloon" data-mode="balloon">
+                        <div class="mode-icon-wrapper">
+                            <span class="mode-icon">🎈</span>
+                            <span class="mode-mascot">🐱</span>
+                        </div>
+                        <h3>單字氣球爆爆樂</h3>
+                        <p>繽紛氣球飄上天囉！看著可愛圖卡，找出正確字母氣球，啵的一聲爆出七彩紙屑！✨</p>
+                        <div class="mode-badge blue">單字拼拼</div>
+                    </div>
+                    
+                    <!-- Hungry Dino -->
+                    <div class="mode-card" id="mode-dino" data-mode="dino">
+                        <div class="mode-icon-wrapper">
+                            <span class="mode-icon">🦖</span>
+                            <span class="mode-mascot">🍪</span>
+                        </div>
+                        <h3>字母大胃王</h3>
+                        <p>小恐龍肚子好餓呀！食物帶著英文字母慢慢掉下來，按對鍵讓恐龍大口吃進去！Nom Nom! 🍎</p>
+                        <div class="mode-badge yellow">最推薦</div>
+                    </div>
+                </div>
+
+                <div class="settings-grid">
+                    <!-- Grade Selection -->
+                    <div class="settings-group">
+                        <label class="settings-label">🌟 第一步：選擇英文單字庫</label>
+                        <div class="button-selector" id="grade-selector">
+                            <button class="selector-btn active" data-grade="low">低年級組 (700個基礎單字)</button>
+                            <button class="selector-btn" data-grade="mid">中年級組 (1400個實用單字)</button>
+                        </div>
+                    </div>
+
+                    <!-- Stage Selection -->
+                    <div class="settings-group">
+                        <label class="settings-label">⭐ 第二步：選擇單字長度難度</label>
+                        <div class="button-selector" id="level-selector">
+                            <button class="selector-btn active" data-level="1">簡單小精靈 (3-4字母)</button>
+                            <button class="selector-btn" data-level="2">快樂小射手 (5-6字母)</button>
+                            <button class="selector-btn" data-level="3">挑戰小騎士 (7字母以上)</button>
+                            <button class="selector-btn" data-level="4">無盡大冒險 (隨機混編)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-action">
+                    <button id="btn-start-game" class="jumbo-btn play-glow">開始玩耍囉 🎠</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- VIEW: MODE 1 WHACK A MOLE -->
+        <section id="view-mole" class="game-view">
+            <div class="game-dashboard jelly-panel">
+                <div class="stat-box orange">
+                    <span class="stat-label">⭐ 獲得星星</span>
+                    <span id="mole-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-box blue">
+                    <span class="stat-label">🔥 連擊紀錄</span>
+                    <span id="mole-combo" class="stat-value">0</span>
+                </div>
+                <div class="stat-box flex-grow green">
+                    <span class="stat-label">🎯 打地鼠挑戰進度</span>
+                    <div class="progress-bar-container">
+                        <div id="mole-progress-bar" class="progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <button id="btn-mole-exit" class="bubbly-btn red text-lg">🚪 離開樂園</button>
+            </div>
+
+            <div class="arena-grid">
+                <!-- Ground Board with Holes -->
+                <div class="playground-panel jelly-panel">
+                    <div class="mole-field-header">
+                        <span class="toy-hint">💡 看到土撥鼠冒出來，直接按對應的英文字母鍵打牠喔！🔨</span>
+                    </div>
+                    <div class="mole-board" id="mole-board">
+                        <!-- 8 holes generated dynamically in JS to avoid HTML bloat -->
+                    </div>
+                </div>
+
+                <!-- Guided Keyboard & Fingering -->
+                <div class="keyboard-panel jelly-panel">
+                    <h3 class="panel-subtitle">👐 盲打雙手彩色鍵盤指引 (請用高亮的手指按按鍵喔)</h3>
+                    <div class="keyboard-container" id="mole-keyboard"></div>
+                    <div class="keyboard-legend">
+                        <span class="legend-item"><span class="legend-color left-pink"></span>左小指</span>
+                        <span class="legend-item"><span class="legend-color left-ring"></span>左無名指</span>
+                        <span class="legend-item"><span class="legend-color left-middle"></span>左中指</span>
+                        <span class="legend-item"><span class="legend-color left-index"></span>左食指</span>
+                        <span class="legend-item"><span class="legend-color thumbs"></span>大拇指</span>
+                        <span class="legend-item"><span class="legend-color right-index"></span>右食指</span>
+                        <span class="legend-item"><span class="legend-color right-middle"></span>右中指</span>
+                        <span class="legend-item"><span class="legend-color right-ring"></span>右無名指</span>
+                        <span class="legend-item"><span class="legend-color right-pink"></span>右小指</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Victory Celebration Overlay (No stress, always happy) -->
+            <div id="mole-completed" class="overlay-panel hidden">
+                <div class="victory-card jelly-panel">
+                    <h2 class="victory-title">🎉 太厲害了！土撥鼠挑戰成功！</h2>
+                    <p class="victory-stats">你一共打到了 <span id="mole-final-score">0</span> 隻土撥鼠！</p>
+                    <div class="celebration-mascots">🐹⭐🔨✨🐹</div>
+                    <div class="overlay-actions">
+                        <button id="btn-mole-retry" class="bubbly-btn green active text-lg">再挑戰一次 🔄</button>
+                        <button id="btn-mole-menu" class="bubbly-btn blue text-lg">回大選單 🏠</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: MODE 2 BALLOON POPPER -->
+        <section id="view-balloon" class="game-view">
+            <div class="game-dashboard jelly-panel">
+                <div class="stat-box orange">
+                    <span class="stat-label">🎈 戳破氣球數</span>
+                    <span id="balloon-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-box blue">
+                    <span class="stat-label">⭐ 拼對單字</span>
+                    <span id="balloon-words-count" class="stat-value">0</span>
+                </div>
+                <div class="stat-box flex-grow purple">
+                    <span class="stat-label">📝 拼音單字卡</span>
+                    <div id="balloon-word-card" class="word-bubble-card">
+                        <span id="balloon-word-emoji" class="word-emoji">🐱</span>
+                        <span id="balloon-word-target" class="word-spelling-display">C _ _</span>
+                        <span id="balloon-word-chinese" class="word-chinese-display">(貓咪)</span>
+                        <button id="btn-balloon-pronounce" class="bubbly-btn-sm sound-btn" title="朗讀">🔊 聽發音</button>
+                    </div>
+                </div>
+                <button id="btn-balloon-exit" class="bubbly-btn red text-lg">🚪 離開樂園</button>
+            </div>
+
+            <div class="arena-grid">
+                <!-- Floating Balloon Canvas View -->
+                <div class="playground-panel jelly-panel select-none">
+                    <div class="balloon-arena-header">
+                        <span class="toy-hint">🎈 尋找對應字母的彩色漂浮氣球，直接在鍵盤按下它，啵的一聲戳破吧！</span>
+                    </div>
+                    <div id="balloon-stage" class="balloon-stage">
+                        <!-- Balloons animate here via canvas or DOM. Let's use standard clean Canvas for seamless smooth performance. -->
+                        <canvas id="balloon-canvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Guided Keyboard & Fingering -->
+                <div class="keyboard-panel jelly-panel">
+                    <h3 class="panel-subtitle">👐 盲打雙手彩色鍵盤指引 (請用高亮的手指按按鍵喔)</h3>
+                    <div class="keyboard-container" id="balloon-keyboard"></div>
+                    <div class="keyboard-legend">
+                        <span class="legend-item"><span class="legend-color left-pink"></span>左小指</span>
+                        <span class="legend-item"><span class="legend-color left-ring"></span>左無名指</span>
+                        <span class="legend-item"><span class="legend-color left-middle"></span>左中指</span>
+                        <span class="legend-item"><span class="legend-color left-index"></span>左食指</span>
+                        <span class="legend-item"><span class="legend-color thumbs"></span>大拇指</span>
+                        <span class="legend-item"><span class="legend-color right-index"></span>右食指</span>
+                        <span class="legend-item"><span class="legend-color right-middle"></span>右中指</span>
+                        <span class="legend-item"><span class="legend-color right-ring"></span>右無名指</span>
+                        <span class="legend-item"><span class="legend-color right-pink"></span>右小指</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Victory Celebration -->
+            <div id="balloon-completed" class="overlay-panel hidden">
+                <div class="victory-card jelly-panel">
+                    <h2 class="victory-title">🏆 氣球爆爆樂大勝利！</h2>
+                    <p class="victory-stats">你成功拼出了 <span id="balloon-final-words">0</span> 個英文單字，戳破了 <span id="balloon-final-score">0</span> 個氣球！</p>
+                    <div class="celebration-mascots">🎈✨🐱🧸🏆🧸🐱✨🎈</div>
+                    <div class="overlay-actions">
+                        <button id="btn-balloon-retry" class="bubbly-btn green active text-lg">再拼一次 🔄</button>
+                        <button id="btn-balloon-menu" class="bubbly-btn blue text-lg">回大選單 🏠</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: MODE 3 HUNGRY DINO -->
+        <section id="view-dino" class="game-view">
+            <div class="game-dashboard jelly-panel">
+                <div class="stat-box orange">
+                    <span class="stat-label">🍔 餵食點數</span>
+                    <span id="dino-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-box blue">
+                    <span class="stat-label">❤️ 飽食度</span>
+                    <div class="progress-bar-container border-yellow">
+                        <div id="dino-fullness" class="progress-bar dino-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="stat-box flex-grow green">
+                    <span class="stat-label">🦖 小恐龍開心中</span>
+                    <div id="dino-status" class="dino-status-text">肚子好餓呀！好想吃字母餅乾喔 🍪</div>
+                </div>
+                <button id="btn-dino-exit" class="bubbly-btn red text-lg">🚪 離開樂園</button>
+            </div>
+
+            <div class="arena-grid">
+                <!-- Dino eating field -->
+                <div class="playground-panel jelly-panel select-none">
+                    <div class="dino-arena-header">
+                        <span class="toy-hint">🦖 按下掉落食物上的對應字母，小恐龍就會高興地吞掉牠喔！🍪🍎🍦</span>
+                    </div>
+                    <div id="dino-stage" class="dino-stage">
+                        <canvas id="dino-canvas"></canvas>
+                        <!-- HTML Overlay Dino to animate cleanly without canvas lag -->
+                        <div id="dino-avatar-container" class="dino-avatar-container idle">
+                            <span id="dino-avatar" class="dino-emoji">🦖</span>
+                            <span id="dino-chew-effect" class="dino-effect hidden">❤️ Nom Nom!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guided Keyboard & Fingering -->
+                <div class="keyboard-panel jelly-panel">
+                    <h3 class="panel-subtitle">👐 盲打雙手彩色鍵盤指引 (請用高亮的手指按按鍵喔)</h3>
+                    <div class="keyboard-container" id="dino-keyboard"></div>
+                    <div class="keyboard-legend">
+                        <span class="legend-item"><span class="legend-color left-pink"></span>左小指</span>
+                        <span class="legend-item"><span class="legend-color left-ring"></span>左無名指</span>
+                        <span class="legend-item"><span class="legend-color left-middle"></span>左中指</span>
+                        <span class="legend-item"><span class="legend-color left-index"></span>左食指</span>
+                        <span class="legend-item"><span class="legend-color thumbs"></span>大拇指</span>
+                        <span class="legend-item"><span class="legend-color right-index"></span>右食指</span>
+                        <span class="legend-item"><span class="legend-color right-middle"></span>右中指</span>
+                        <span class="legend-item"><span class="legend-color right-ring"></span>右無名指</span>
+                        <span class="legend-item"><span class="legend-color right-pink"></span>右小指</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Victory Celebration -->
+            <div id="dino-completed" class="overlay-panel hidden">
+                <div class="victory-card jelly-panel">
+                    <h2 class="victory-title">🦖 恐龍大胃王餵飽飽！</h2>
+                    <p class="victory-stats">你一共餵食了 <span id="dino-final-score">0</span> 個食物！小恐龍非常開心！❤️</p>
+                    <div class="celebration-mascots">🦕🍰🦖🍩🦕🍦🦖🍪</div>
+                    <div class="overlay-actions">
+                        <button id="btn-dino-retry" class="bubbly-btn green active text-lg">再餵一次 🔄</button>
+                        <button id="btn-dino-menu" class="bubbly-btn blue text-lg">回大選單 🏠</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEADERBOARD MODAL (WOODEN BADGE STYLE) -->
+        <div id="modal-leaderboard" class="modal-wrapper hidden">
+            <div class="modal-content jelly-panel">
+                <div class="modal-header">
+                    <h2 class="glow-title">🏆 樂園榮譽排行榜 (本地最佳紀錄)</h2>
+                    <button id="btn-close-leaderboard" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="leaderboard-tabs">
+                        <button class="tab-btn active" data-tab="mole">敲土撥鼠排行</button>
+                        <button class="tab-btn" data-tab="balloon">氣球爆爆排行</button>
+                        <button class="tab-btn" data-tab="dino">大胃王排行</button>
+                    </div>
+                    <div class="leaderboard-table-container">
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr id="table-headers">
+                                    <th>名次</th>
+                                    <th>單字庫</th>
+                                    <th>遊玩關卡</th>
+                                    <th>最佳成績</th>
+                                    <th>玩耍日期</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-list">
+                                <!-- Filled by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core word database and child-friendly game script -->
+    <script src="words.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
